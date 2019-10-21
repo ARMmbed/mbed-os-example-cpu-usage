@@ -1,60 +1,46 @@
-# Getting started with CPU Usage on Mbed OS
+![](./resources/official_armmbed_example_badge.png)
+# CPU Usage Mbed OS Example
 
-This guide reviews the steps required to get CPU usage on Mbed OS platform.
+The example project is part of the [Arm Mbed OS Official Examples](https://os.mbed.com/code/). It reviews the steps required to get Central Processing Unit (CPU) usage on the Mbed OS platform. It contains an application that can be run on all supported [Mbed boards](https://os.mbed.com/platforms/).
 
-Please install [mbed CLI](https://github.com/ARMmbed/mbed-cli#installing-mbed-cli).
+You can build the project with all supported [Mbed OS build tools](https://os.mbed.com/docs/mbed-os/latest/tools/index.html). However, this example project specifically refers to the command line interface tool [Arm Mbed CLI](https://github.com/ARMmbed/mbed-cli#installing-mbed-cli).
+(Note: To see a rendered example you can import into the Arm Online Compiler, please see our [import quick start](https://os.mbed.com/docs/mbed-os/latest/quick-start/online-with-the-online-compiler.html#importing-the-code).)
 
-## Import the example application
+1. [Install Mbed CLI](https://os.mbed.com/docs/mbed-os/latest/quick-start/offline-with-mbed-cli.html).
 
-From the command-line, import the example:
+1. Clone this repository on your system, and change the current directory to where the project was cloned:
 
+    ```bash
+    $ git clone git@github.com:armmbed/mbed-os-example-cpu-usage && cd mbed-os-example-cpu-usage
+    ```
+
+    Alternatively, you can download the example project with Arm Mbed CLI using the `import` subcommand:
+
+    ```bash
+    $ mbed import mbed-os-example-cpu-usage && cd mbed-os-example-cpu-usage
+    ```
+
+## Application functionality
+
+The `main()` function creates an event queue and adds a function to periodically print idle and usage information about the CPU. It also starts a thread that blinks an LED at varying intervals in order to keep the CPU busy.
+
+## Building and Running
+
+1. Connect a USB cable between the USB port on the target and the host computer.
+2. Run the following command to build the example project and program the microcontroller flash memory:
+    ```bash
+    $ mbed compile -m <TARGET> -t <TOOLCHAIN> --flash --sterm
+    ```
+
+The binary is located at `./BUILD/<TARGET>/<TOOLCHAIN>/mbed-os-example-cpu-usage.bin`.
+
+Alternatively, you can manually copy the binary to the board, which you mount on the host computer over USB.
+
+Depending on the target, you can build the example project with the `GCC_ARM`, `ARM` or `IAR` toolchain. After installing Arm Mbed CLI, run the command below to determine which toolchain supports your target:
+
+```bash
+$ mbed compile -S
 ```
-mbed import mbed-os-example-cpu-usage
-cd mbed-os-example-cpu-usage
-```
-
-### Now compile
-
-Invoke `mbed compile`, and specify the name of your platform and your favorite toolchain (`GCC_ARM`, `ARM`, `IAR`). For example, for the ARM Compiler 5:
-
-```
-mbed compile -m K64F -t ARM
-```
-
-Your PC may take a few minutes to compile your code. At the end, you see the following result:
-
-```
-[snip]
-+------------------+-------+-------+------+
-| Module           | .text | .data | .bss |
-+------------------+-------+-------+------+
-| [lib]\c_w.l      | 11473 |    16 |  348 |
-| [lib]\cpprt_w.l  |    36 |     0 |    0 |
-| [lib]\fz_wm.l    |    18 |     0 |    0 |
-| [lib]\m_wm.l     |    48 |     0 |    0 |
-| anon$$obj.o      |    32 |     0 | 1024 |
-| main.o           |   490 |    16 |    0 |
-| mbed-os\drivers  |   165 |     0 |    0 |
-| mbed-os\events   |  2139 |     8 | 1568 |
-| mbed-os\features |   132 |     0 |  304 |
-| mbed-os\hal      |  1910 |    34 |  128 |
-| mbed-os\platform |  3695 |   104 |  604 |
-| mbed-os\rtos     | 17302 |  2310 | 4592 |
-| mbed-os\targets  | 10707 |   112 |  324 |
-| Subtotals        | 48147 |  2600 | 8892 |
-+------------------+-------+-------+------+
-Total Static RAM memory (data + bss): 11492 bytes
-Total Flash memory (text + data): 50747 bytes
-
-Image: .\BUILD\K64F\ARM\mbed-os-example-cpu-usage.bin
-
-```
-
-### Program your board
-
-1. Connect your Mbed device to the computer over USB.
-1. Copy the binary file to the Mbed device.
-1. Press the reset button to start the program.
 
 ### License and contributions
 The software is provided under Apache-2.0 license. Contributions to this project are accepted under the same license. Please see contributing.md for more info.
