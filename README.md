@@ -1,4 +1,4 @@
-**This example is deprecated. The [mbed-os-example-cpu-stats](https://os.mbed.com/teams/mbed-os-examples/code/mbed-os-example-cpu-stats/) example shows how to use the `mbed_stats_cpu_get` API to print the CPU usage.**
+**This example is deprecated. The [mbed-os-example-cpu-stats](https://github.com/ARMmbed/mbed-os-example-cpu-stats) example shows how to use the `mbed_stats_cpu_get` API to print the CPU usage.**
 
 # Getting started with CPU Usage on Mbed OS
 
